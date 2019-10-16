@@ -8,14 +8,7 @@ namespace BestRestaurants.Models
         public string Description { get; set; } 
         public string Country { get; set; }
         public string ImgURL { get; set; }
-
         public int Count {get;set;}
         public int Id { get; set; }
-
-
-
-
-
-        
     }
 }

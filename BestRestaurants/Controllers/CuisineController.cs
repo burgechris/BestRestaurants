@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using BestRestaurants.Models;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 using Microsoft.EntityFrameworkCore;
 
 namespace BestRestaurants.Controllers
@@ -18,6 +19,18 @@ namespace BestRestaurants.Controllers
         public ActionResult Index()
         {
             List<Cuisine> model = _db.Cuisine.ToList();
+            return View(model);
+        }
+
+        [HttpGet("cuisine/{Id}")]
+        public ActionResult CuisineType(int id)
+        {
+            Cuisine cuisineModel = _db.Cuisine.FirstOrDefault(cuisine => cuisine.Id == id);
+            List<Restaurant> restaurantModel = _db.Restaurants.Where(r => r.CuisineId == id).ToList();
+            Dictionary<string,Object> model = new Dictionary<string,Object>(){
+                {"cuisine", cuisineModel}, 
+                {"restaurants", restaurantModel}
+                };
             return View(model);
         }
     }

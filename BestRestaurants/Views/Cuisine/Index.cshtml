@@ -8,15 +8,15 @@
 @{ 
     foreach (Cuisine cuisine in Model)
     {
-        <a href='@Url.Action($"{cuisine.Name}","Cuisine")'>
             <div class="card bg-dark text-white col-md-4 col-sm-6">
+            <a href='@Url.Action($"{cuisine.Name}","Cuisine")' id='@($"{cuisine.Id}")'>
             <img src=@Url.Content($"{cuisine.ImgURL}") class="card-img" alt=$"{cuisine.Name}">
             <div class="card-img-overlay">
                 <h5 class="card-title">@($"{cuisine.Name}")</h5>
                 <p class="card-text">@($"{cuisine.Description}")</p>
                 <p class="card-text">@(cuisine.Count==1 ? $"There are {cuisine.Count} restaurant in your area!" : $"There are {cuisine.Count} restaurants in your area!")</p>
             </div>
+            </a>
         </div>
-        </a>
     }
 }
