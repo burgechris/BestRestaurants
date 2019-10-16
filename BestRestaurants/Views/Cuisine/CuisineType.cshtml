@@ -1,3 +1,4 @@
+@using BestRestaurants.Models;
 @{
     Layout = "_Layout";
 }
@@ -5,3 +6,15 @@
 <h1>@($"{Model.cuisine.Name}")</h1>
 <h3>@($"{Model.cuisine.Country}")</h3>
 <p>@($"{Model.cuisine.Description}")</p>
+
+@{
+    foreach(Restaurant r in Model.Restaurants)
+    {
+        <div class="restaurant" id="@($"{r.Name}")">
+            <h2>@($"{r.Name}")</h2>
+            <h3>@($"{r.Rating}") | @($"{r.PriceRange}"</h3>
+            <h4>@($"{r.Address}")</h4>
+            <p>@($"{r.Description}")</p>
+        </div>
+    }
+}
