@@ -25,7 +25,7 @@ namespace BestRestaurants
             services.AddMvc();
 
             services.AddEntityFrameworkMySql()
-                .AddDbContext<HunahContext>(options => options
+                .AddDbContext<BestRestaurantsContext>(options => options
                 .UseMySql(Configuration["ConnectionStrings:DefaultConnection"]));
         }
 
@@ -48,9 +48,5 @@ namespace BestRestaurants
             });
 
         }
-    }
-    public static class DBConfiguration
-    {
-        public static string ConnectionString = "server=localhost;user id=root;password=epicodus;port=3306;database=hunah;";
     }
 }

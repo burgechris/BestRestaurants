@@ -1,0 +1,23 @@
+﻿/* h1 {
+  color: blueviolet;
+  font-style: italic;
+}
+
+ul {
+  list-style-type: none;
+}
+
+#btn-delete {
+  margin-bottom: 10px;
+} */
+
+footer{
+  position:fixed;
+  bottom:0px;
+  left:0px;
+  width:100%;
+  color:#CCC;
+  background:#333;
+  padding:8px;
+  /* background-color: black; */
+}
