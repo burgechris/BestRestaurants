@@ -9,7 +9,7 @@
     foreach (Cuisine cuisine in Model)
     {
             <div class="card bg-dark text-white col-md-4 col-sm-6">
-            <a href='@Url.Action($"{cuisine.Name}","Cuisine")' id='@($"{cuisine.Id}")'>
+            <a href='@($"cuisine/{cuisine.Id}")' id='@($"{cuisine.Id}")'>
             <img src=@Url.Content($"{cuisine.ImgURL}") class="card-img" alt=$"{cuisine.Name}">
             <div class="card-img-overlay">
                 <h5 class="card-title">@($"{cuisine.Name}")</h5>

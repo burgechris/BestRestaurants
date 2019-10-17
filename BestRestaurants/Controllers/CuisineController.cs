@@ -3,6 +3,7 @@ using BestRestaurants.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace BestRestaurants.Controllers
@@ -27,21 +28,29 @@ namespace BestRestaurants.Controllers
         {
             Cuisine cuisineModel = _db.Cuisine.FirstOrDefault(cuisine => cuisine.Id == id);
             List<Restaurant> restaurantModel = _db.Restaurants.Where(r => r.CuisineId == id).ToList();
-            Dictionary<string,Object> model = new Dictionary<string,Object>(){
-                {"cuisine", cuisineModel}, 
-                {"restaurants", restaurantModel}
-                };
-            return View(model);
+            List<double> ratingModel = new List<double>();
+            foreach(Restaurant r in restaurantModel)
+            {
+                double avg = _db.Reviews.Where(x => x.RestaurantId == r.RestaurantId).Average(y => y.Rating);
+                ratingModel.Add(avg);
+            }
+            ViewBag.cuisine = cuisineModel;
+            ViewBag.restaurants = restaurantModel;
+            ViewBag.rating = ratingModel;
+            return View();
         }
 
-        [HttpGet("cuisine/{cuisineId}/restuarant/{Id}")]
+        [HttpGet("cuisine/{cuisineId}/restaurant/{Id}")]
 
         public ActionResult Restaurant(int cuisineId, int Id)
         {
-            Restaurant restaurantModel = _db.Restaurants.Where(r => r.Id == Id) as Restaurant;
+            Restaurant restaurantModel = _db.Restaurants.FirstOrDefault(r => r.RestaurantId == Id) as Restaurant;
             List<Review> reviewModel = _db.Reviews.Where(rv => rv.RestaurantId == Id).ToList();
-            Dictionary<string, Object> model = new Dictionary<string, object>(){{"restaurant", restaurantModel},{"reviews", reviewModel};
-            return View(model);
+            double ratingModel = _db.Reviews.Where(rv => rv.RestaurantId == Id).Average(y => y.Rating);
+            ViewBag.restaurant = restaurantModel;
+            ViewBag.reviews = reviewModel;
+            ViewBag.rating = ratingModel;
+            return View();
         }
     }
 }

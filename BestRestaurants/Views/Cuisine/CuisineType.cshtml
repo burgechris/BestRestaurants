@@ -1,23 +1,25 @@
 @using BestRestaurants.Models;
+@using System.Collections.Generic;
 
 @{
     Layout = "_Layout";
+    var r = ViewBag.restaurants as List<Restaurant>;
 }
 
-<h1>@($"{Model.cuisine.Name}")</h1>
-<h3>@($"{Model.cuisine.Country}")</h3>
-<p>@($"{Model.cuisine.Description}")</p>
+<h1>@($"{ViewBag.cuisine.Name}")</h1>
+<h3>@($"{ViewBag.cuisine.Country}")</h3>
+<p>@($"{ViewBag.cuisine.Description}")</p>
 
-@{ 
-    foreach (Restaurant r in Model.restaurants)
+
+    @for (var i =0; i<r.Count; i++)
     {
-            <div class="card bg-dark text-white col-md-4 col-sm-6">
-            <a href='@Url.Action($"cuisine/{Model.cuisine.Id}/restaurant/{r.Id}","Cuisine")' id='@($"{r.Id}")'>
-            <div class="card-img-overlay">
-                <h5 class="card-title">@($"{r.Name}")</h5>
-                <p class="card-text">@($"{r.Description}")</p>
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                 <input type="hidden" name="Id" value=@($"{r[i].RestaurantId}")>
+                 <input type="hidden" name="cuisineId" value=@($"{ViewBag.cuisine.Id}")>
+                <a href="@($"/cuisine/{ViewBag.cuisine.Id}/restaurant/{r[i].RestaurantId}")"><h5 class="card-title">@($"{r[i].Name}")</h5></a>
+                <h6 class="card-subtitle mb-2 text-muted">@($"{ViewBag.rating[i]}")</h6>
+                <p class="card-text">@($"{r[i].Description}")</p>
             </div>
-            </a>
         </div>
     }
-}

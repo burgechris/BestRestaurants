@@ -21,3 +21,7 @@ footer{
   padding:8px;
   /* background-color: black; */
 }
+
+a {
+  display: block;
+}

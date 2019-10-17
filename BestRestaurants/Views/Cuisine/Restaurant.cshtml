@@ -1,11 +1,25 @@
+@using BestRestaurants.Models;
+
 @{
     Layout = "_Layout";
 }
 
-<h1>@($"{Model.restaurant.Name}")</h1>
 
-<h5>@($"{Model.restaurant.PriceRange} | {Model.restaurant.Rating}")</h5>
 
-<h5>@($"{Model.restaurant.Address}")</h5>
+<h1>@($"{ViewBag.restaurant.Name}")</h1>
 
-<p></p>
+<h5>@($"{ViewBag.restaurant.PriceRange} | {ViewBag.rating}")</h5>
+
+<h5>@($"{ViewBag.restaurant.Address}")</h5>
+
+<p>@($"{ViewBag.restaurant.Description}")</p>
+
+@{ 
+    foreach (Review rv in ViewBag.reviews)
+    {
+        <div class="card bg-dark text-white">
+            <h5 class="card-title">@($"User Name: {rv.UserName} | Rating: {rv.Rating}")</h5>
+            <p class="card-text">@($"{rv.Body}")</p>
+        </div>
+    }
+}
