@@ -1,3 +1,5 @@
+@using BestRestaurants.Models;
+
 @{
     Layout = "_Layout";
 }
@@ -5,3 +7,17 @@
 <h1>@($"{Model.cuisine.Name}")</h1>
 <h3>@($"{Model.cuisine.Country}")</h3>
 <p>@($"{Model.cuisine.Description}")</p>
+
+@{ 
+    foreach (Restaurant r in Model.restaurants)
+    {
+            <div class="card bg-dark text-white col-md-4 col-sm-6">
+            <a href='@Url.Action($"cuisine/{Model.cuisine.Id}/restaurant/{r.Id}","Cuisine")' id='@($"{r.Id}")'>
+            <div class="card-img-overlay">
+                <h5 class="card-title">@($"{r.Name}")</h5>
+                <p class="card-text">@($"{r.Description}")</p>
+            </div>
+            </a>
+        </div>
+    }
+}

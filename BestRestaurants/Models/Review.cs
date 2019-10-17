@@ -7,5 +7,6 @@ namespace BestRestaurants.Models
         public string UserName { get; set; }
         public int Rating { get; set; }
         public string Body { get; set; }    
+        public int RestaurantId {get;set;}
     }
 }

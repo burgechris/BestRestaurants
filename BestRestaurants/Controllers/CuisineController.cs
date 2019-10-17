@@ -33,5 +33,15 @@ namespace BestRestaurants.Controllers
                 };
             return View(model);
         }
+
+        [HttpGet("cuisine/{cuisineId}/restuarant/{Id}")]
+
+        public ActionResult Restaurant(int cuisineId, int Id)
+        {
+            Restaurant restaurantModel = _db.Restaurants.Where(r => r.Id == Id) as Restaurant;
+            List<Review> reviewModel = _db.Reviews.Where(rv => rv.RestaurantId == Id).ToList();
+            Dictionary<string, Object> model = new Dictionary<string, object>(){{"restaurant", restaurantModel},{"reviews", reviewModel};
+            return View(model);
+        }
     }
 }
