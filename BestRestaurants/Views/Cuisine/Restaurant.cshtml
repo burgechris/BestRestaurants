@@ -23,3 +23,6 @@
         </div>
     }
 }
+<input type="hidden" name="cuisineId" value=@($"{ViewBag.cuisineId}")>
+<input type="hidden" name="Id" value=@($"{ViewBag.restaurant.RestaurantId}")>
+<button class="btn btn-outline-dark">@Html.ActionLink("Add a Review", "Create", "Cuisine", new {cuisineId = ViewBag.cuisineId, Id = ViewBag.restaurant.RestaurantId})</button>

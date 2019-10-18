@@ -50,7 +50,30 @@ namespace BestRestaurants.Controllers
             ViewBag.restaurant = restaurantModel;
             ViewBag.reviews = reviewModel;
             ViewBag.rating = ratingModel;
+            ViewBag.cuisineId = cuisineId;
             return View();
+        }
+
+        // public ActionResult Create(int cuisineId, int Id)
+        // {
+        //     ViewBag.cuisineId = cuisineId;
+        //     ViewBag.Id = Id;
+        //     return View();
+        // }
+        [HttpGet("cuisine/create/")]
+        public ActionResult Create(int cuisineId, int Id)
+        {
+            ViewBag.cuisineId = cuisineId;
+            ViewBag.Id = Id;
+            return View();
+        }
+
+        [HttpPost("cuisine/create/")]
+        public ActionResult Create(Review review, int cuisineId)
+        {
+            _db.Reviews.Add(review);
+            _db.SaveChanges();
+            return Redirect("cuisine/{cuisineId}/restaurant/{review.Id}");
         }
     }
 }

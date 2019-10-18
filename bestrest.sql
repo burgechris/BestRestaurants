@@ -44,34 +44,58 @@ INSERT INTO `Cuisine` VALUES (1,'Chinese','Kung Pao Chicken','China','https://ca
 UNLOCK TABLES;
 
 --
--- Table structure for table `Restaurant`
+-- Table structure for table `Restaurants`
 --
 
-DROP TABLE IF EXISTS `Restaurant`;
+DROP TABLE IF EXISTS `Restaurants`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `Restaurant` (
-  `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `Name` varchar(255) NOT NULL,
-  `Description` varchar(255) NOT NULL,
-  `Rating` int(11) NOT NULL DEFAULT '0',
-  `Address.Street` varchar(255) NOT NULL,
-  `Address.City` varchar(255) NOT NULL,
-  `Address.State` varchar(255) NOT NULL,
-  `Address.Zip` varchar(255) NOT NULL,
-  `PriceRange` varchar(255) NOT NULL,
+CREATE TABLE `Restaurants` (
+  `RestaurantId` int(11) NOT NULL AUTO_INCREMENT,
+  `Description` varchar(255) DEFAULT NULL,
+  `Address` varchar(255) DEFAULT NULL,
+  `PriceRange` varchar(255) DEFAULT NULL,
   `CuisineId` int(11) NOT NULL,
-  PRIMARY KEY (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `Name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`RestaurantId`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `Restaurant`
+-- Dumping data for table `Restaurants`
 --
 
-LOCK TABLES `Restaurant` WRITE;
-/*!40000 ALTER TABLE `Restaurant` DISABLE KEYS */;
-/*!40000 ALTER TABLE `Restaurant` ENABLE KEYS */;
+LOCK TABLES `Restaurants` WRITE;
+/*!40000 ALTER TABLE `Restaurants` DISABLE KEYS */;
+INSERT INTO `Restaurants` VALUES (1,'The REAL AUTHENTIC Chinese food place','500 Kung Pao Way, Portland, OR 91245','$',1,'Panda Express'),(2,'Real italian food made by a real Italian Papa.','2130 Pepperoni Dr., Keizer, OR 95235','$$',2,'Papa John\'s'),(3,'Chinese food for the most cultured of folks','15723 Boones Ferry Rd., Lake Oswego, OR 235098','$$$',1,'PF Changs'),(4,'When you\'re here, you\'re family!','235987 Scholls Ferry Rd., Beaverton, OR 92366','$$$',2,'Olive Garden');
+/*!40000 ALTER TABLE `Restaurants` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Reviews`
+--
+
+DROP TABLE IF EXISTS `Reviews`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `Reviews` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `UserName` varchar(255) DEFAULT NULL,
+  `Rating` int(11) DEFAULT NULL,
+  `Body` varchar(255) DEFAULT NULL,
+  `RestaurantId` int(11) DEFAULT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Reviews`
+--
+
+LOCK TABLES `Reviews` WRITE;
+/*!40000 ALTER TABLE `Reviews` DISABLE KEYS */;
+INSERT INTO `Reviews` VALUES (1,'mike_69_420',4,'This restaurant blew my socks off, as close as you can get to Chinese food outside of China.',1),(2,'mike_69_420',1,'The garlic sauce made me sick. Really sick. Someone did not wash their hands',2),(3,'lauren_the_vegan',5,'I was really impressed with the Kung Pao Chicken. It tasted like real chicken!',3),(4,'lauren_the_vegan',4,'I really did feel like family. However, I knocked off one point for charging me for water. My family wouldnt do that.',4),(5,'mike_69_420',1,'This place is dank. But, not today.',1);
+/*!40000 ALTER TABLE `Reviews` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -83,4 +107,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-10-16 16:34:24
+-- Dump completed on 2019-10-17 17:02:11

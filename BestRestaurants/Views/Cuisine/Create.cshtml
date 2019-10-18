@@ -1,0 +1,22 @@
+@model BestRestaurants.Models.Review;
+@using BestRestaurants.Models;
+
+
+<h4>Add a Review</h4>
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(model => model.UserName)
+    @Html.TextBoxFor(model => model.UserName)
+
+    @Html.LabelFor(model => model.Rating)
+    @Html.TextBoxFor(model => model.Rating)
+
+    @Html.LabelFor(model => model.Body)
+    @Html.TextBoxFor(model => model.Body)
+
+   <input type="hidden" name="RestaurantId" value=@($"{ViewBag.Id}")>
+  
+
+    <button type="submit" value="Add Review" class="btn btn-default">Save Review</button>
+}
+ <input type="hidden" name="cuisineId" value=@($"{ViewBag.cuisineId}")>
